@@ -200,7 +200,3 @@ npm run dev
 | **Farhan** | Simulation & Logic Specialist |
 
 ---
-
-<p align="center">
-  © 2026 QueueQuest. Built with ❤️ and lots of coffee.
-</p>
