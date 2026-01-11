@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'preact/hooks';
+import { motion } from 'framer-motion';
 import { GamepadIcon } from './Icons';
 
 import { CHARACTER_DATA, handleCharacterClick } from './logic/CharacterClick';
+
 
 export default function HeroSection() {
 
@@ -9,8 +11,8 @@ export default function HeroSection() {
     <section class="relative min-h-[700px] flex flex-col items-center justify-center overflow-hidden py-16 px-4">
       <div class="absolute inset-0 z-0">
         <div class="absolute inset-0 bg-gradient-to-b from-dark-900/50 via-dark-800/50 to-dark-900/80"></div>
-        
-        <div 
+
+        <motion.div
           class="absolute bottom-0 w-full h-[300px]"
           style={{
             backgroundImage: `
@@ -18,71 +20,92 @@ export default function HeroSection() {
               linear-gradient(90deg, transparent 95%, rgba(6, 182, 212, 0.2) 95%)
             `,
             backgroundSize: '40px 40px',
-            transform: 'perspective(500px) rotateX(60deg) translateY(100px) scale(2)',
             transformOrigin: 'bottom center',
             maskImage: 'linear-gradient(to top, black, transparent)'
           }}
-        ></div>
+          initial={{ rotateX: 60, y: 100, scale: 2, opacity: 0 }}
+          animate={{ rotateX: 60, y: 100, scale: 2, opacity: 1 }}
+          transition={{ duration: 1.5 }}
+        ></motion.div>
 
         <div class="absolute inset-0 overflow-hidden pointer-events-none">
-             {Array.from({ length: 20 }).map((_, i) => (
-                 <div class="particle-star" 
-                      style={{
-                          left: `${Math.random() * 100}%`,
-                          top: `${Math.random() * 100}%`,
-                          animationDelay: `${Math.random() * 5}s`
-                      }}
-                 />
-             ))}
+          {Array.from({ length: 20 }).map((_) => (
+            <motion.div class="particle-star"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+              }}
+              animate={{
+                opacity: [0, 1, 0],
+                scale: [0, 1, 0],
+              }}
+              transition={{
+                duration: 2 + Math.random() * 3,
+                repeat: Infinity,
+                delay: Math.random() * 2
+              }} />
+          ))}
         </div>
       </div>
 
       <div class="relative z-10 w-full max-w-7xl mx-auto flex flex-col items-center">
-        
-        <div class="text-center mb-24 animate-fade-in-down">
-        
+
+        <motion.div
+          class="text-center mb-24"
+          initial={{ y: -50, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.8 }}
+        >
+
           <h1 class="font-['VT323'] text-6xl md:text-8xl font-bold mb-4 tracking-wider leading-none">
             <span class="block gradient-text drop-shadow-[0_4px_0_rgba(0,0,0,0.5)]">
               QUEUE QUEST
             </span>
           </h1>
-          
+
           <p class="font-['VT323'] text-2xl text-white/60 tracking-widest uppercase">
             Choose Your Character • Modeling and Simulation
           </p>
-        </div>
+        </motion.div>
 
-        <div class="relative w-full">
-            
-           <div class="flex justify-center items-end gap-6 md:gap-12 lg:gap-16 flex-wrap px-4 perspective-1000">
-              {CHARACTER_DATA.map((char, index) => (
-                <div 
-                  key={char.id}
-                  class="group relative flex flex-col items-center cursor-pointer"
-                  onClick={() => handleCharacterClick(index)}
-                >
-                  <div class="relative z-10 transition-transform duration-300 group-hover:scale-110 group-hover:-translate-y-4">
-                      <div class="absolute inset-0 bg-primary-500/0 group-hover:bg-primary-500/20 blur-xl rounded-full transition-all duration-300"></div>
-                      
-                      <div class="character-sprite relative">
-                          <img 
-                            src={char.asset} 
-                            alt={char.name}
-                            class="h-40 md:h-52 lg:h-64 w-auto object-contain pixelated drop-shadow-2xl"
-                          />
-                      </div>
-                  </div>
-                  
-                  <div 
-                    class="w-16 h-3 bg-black/40 rounded-[100%] blur-sm mt-4 transition-all duration-300 group-hover:w-20 group-hover:bg-primary-900/40"
-                  ></div>
+      <div class="relative w-full">
+
+        <div class="flex justify-center items-end gap-6 md:gap-12 lg:gap-16 flex-wrap px-4 perspective-1000">
+          {CHARACTER_DATA.map((char, index) => (
+            <motion.div
+              key={char.id}
+              class="group relative flex flex-col items-center cursor-pointer"
+              onClick={() => handleCharacterClick(index)}
+              initial={{ y: 50, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: index * 0.1, duration: 0.5 }}
+            >
+              <motion.div
+                class="relative z-10"
+                whileHover={{ scale: 1.1, y: -16 }}
+                transition={{ type: "spring", stiffness: 300, damping: 15 }}
+              >
+                <div class="absolute inset-0 bg-primary-500/0 group-hover:bg-primary-500/20 blur-xl rounded-full transition-all duration-300"></div>
+
+                <div class="character-sprite relative">
+                  <img
+                    src={char.asset}
+                    alt={char.name}
+                    class="h-40 md:h-52 lg:h-64 w-auto object-contain pixelated drop-shadow-2xl" />
                 </div>
-              ))}
-           </div>
+              </motion.div>
+
+              <motion.div
+                class="w-16 h-3 bg-black/40 rounded-[100%] blur-sm mt-4"
+                animate={{ scale: [1, 0.8, 1], opacity: [0.4, 0.2, 0.4] }}
+                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+              ></motion.div>
+            </motion.div>
+          ))}
         </div>
       </div>
-
-      <style>{`
+      </div>
+    <style>{`
         .pixelated {
             image-rendering: pixelated;
             image-rendering: -moz-crisp-edges;

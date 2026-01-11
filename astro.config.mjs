@@ -11,7 +11,17 @@ export default defineConfig({
   },
   vite: {
     ssr: {
-      noExternal: ['chart.js']
+      noExternal: ['chart.js', 'framer-motion']
+    },
+    resolve: {
+      alias: {
+        'react': 'preact/compat',
+        'react-dom': 'preact/compat',
+        'react/jsx-runtime': 'preact/jsx-runtime'
+      }
+    },
+    optimizeDeps: {
+      include: ['framer-motion']
     }
   }
 });
