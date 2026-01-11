@@ -316,12 +316,12 @@ export default function QueueAnimation() {
         ) : (
           <div class="absolute inset-0 flex items-end pb-4">
             {servingPerson && (
-              <div class="absolute left-[15%] md:left-[18%] bottom-[15%] z-20">
+              <div class="absolute right-[15%] md:right-[18%] bottom-[15%] z-20">
                 <div class="relative pixel-character">
                   <img 
                     src={servingPerson.character} 
                     alt={`Customer ${servingPerson.id}`} 
-                    class="h-16 md:h-24 w-auto drop-shadow-[0_4px_8px_rgba(0,0,0,0.8)] pixel-art"
+                    class="h-16 md:h-24 w-auto drop-shadow-[0_4px_8px_rgba(0,0,0,0.8)] pixel-art scale-x-[-1]"
                     style="image-rendering: pixelated; filter: drop-shadow(0 0 8px rgba(34, 197, 94, 0.4));"
                   />
                   <div class="absolute -top-6 left-1/2 transform -translate-x-1/2 bg-success-500 text-white text-xs px-3 py-1 rounded-full whitespace-nowrap shadow-lg border-2 border-success-300 pixel-text">
@@ -334,7 +334,7 @@ export default function QueueAnimation() {
               </div>
             )}
 
-            <div class="absolute right-4 left-[35%] md:left-[40%] bottom-[12%] flex items-end justify-start gap-1 md:gap-2 flex-row-reverse z-10">
+            <div class="absolute left-4 right-[35%] md:right-[40%] bottom-[12%] flex items-end justify-start gap-1 md:gap-2 flex-row-reverse z-10">
               {waitingPeople.slice(0, 6).map((person, index) => (
                 <div 
                   key={person.id}
@@ -344,7 +344,7 @@ export default function QueueAnimation() {
                   <img 
                     src={person.character} 
                     alt={`Customer ${person.id}`} 
-                    class="h-12 md:h-20 w-auto drop-shadow-[0_2px_4px_rgba(0,0,0,0.6)] pixel-art hover:scale-110 transition-transform"
+                    class="h-12 md:h-20 w-auto drop-shadow-[0_2px_4px_rgba(0,0,0,0.6)] pixel-art hover:scale-110 transition-transform scale-x-[-1]"
                     style="image-rendering: pixelated;"
                   />
                   <div class="absolute -bottom-5 left-1/2 transform -translate-x-1/2 text-xs font-bold text-white bg-dark-400/90 px-2 py-0.5 rounded-full border border-white/20 pixel-text">
