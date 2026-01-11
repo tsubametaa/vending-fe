@@ -1,0 +1,368 @@
+---
+/**
+ * Layout.astro - Layout Utama untuk QueueQuest
+ * =============================================
+ * Layout dengan header, footer, dan styling global
+ */
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { 
+  title, 
+  description = "QueueQuest: The Vending Machine Challenge - Game simulasi antrian M/M/1" 
+} = Astro.props;
+
+import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
+---
+
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <meta name="author" content="uta-farhan-ilham" />
+    
+    <!-- SEO Meta Tags -->
+    <meta name="keywords" content="antrian, simulasi, M/M/1, vending machine, teori antrian, Monte Carlo" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&family=VT323&display=swap" rel="stylesheet" />
+    
+    <title>{title}</title>
+    
+    <style is:global>
+      /* Base Styles */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      
+      html {
+        scroll-behavior: smooth;
+      }
+      
+      body {
+        font-family: 'Inter', system-ui, sans-serif;
+        background: linear-gradient(135deg, #0c4a6e 0%, #1e1e2e 40%, #181825 70%, #4a044e 100%);
+        background-attachment: fixed;
+        min-height: 100vh;
+        color: #f8fafc;
+        overflow-x: hidden;
+      }
+      
+      /* Custom Scrollbar */
+      ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+      }
+      
+      ::-webkit-scrollbar-track {
+        background: rgba(30, 41, 59, 0.5);
+        border-radius: 4px;
+      }
+      
+      ::-webkit-scrollbar-thumb {
+        background: linear-gradient(135deg, #0ea5e9, #d946ef);
+        border-radius: 4px;
+      }
+      
+      ::-webkit-scrollbar-thumb:hover {
+        background: linear-gradient(135deg, #38bdf8, #e879f9);
+      }
+      
+      /* Glassmorphism Utility */
+      .glass {
+        background: rgba(30, 41, 59, 0.6);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      
+      .glass-dark {
+        background: rgba(24, 24, 37, 0.8);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+      }
+      
+      /* Gradient Text */
+      .gradient-text {
+        background: linear-gradient(135deg, #38bdf8, #e879f9, #4ade80);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      
+      /* Button Base Styles */
+      .btn-primary {
+        background: linear-gradient(135deg, #0ea5e9, #0369a1);
+        color: white;
+        padding: 12px 24px;
+        border-radius: 12px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        border: none;
+        cursor: pointer;
+        box-shadow: 0 4px 15px rgba(14, 165, 233, 0.3);
+      }
+      
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 25px rgba(14, 165, 233, 0.5);
+      }
+      
+      .btn-primary:active {
+        transform: translateY(0);
+      }
+      
+      .btn-primary:disabled {
+        background: linear-gradient(135deg, #64748b, #475569);
+        cursor: not-allowed;
+        transform: none;
+        box-shadow: none;
+      }
+      
+      /* Input Styles */
+      .input-field {
+        background: rgba(30, 41, 59, 0.6);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 10px;
+        padding: 12px 16px;
+        color: white;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+        width: 100%;
+      }
+      
+      .input-field:focus {
+        outline: none;
+        border-color: #0ea5e9;
+        box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.2);
+      }
+      
+      .input-field::placeholder {
+        color: rgba(255, 255, 255, 0.4);
+      }
+      
+      /* Card Styles */
+      .card {
+        background: rgba(30, 41, 59, 0.6);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 20px;
+        padding: 24px;
+        transition: all 0.3s ease;
+      }
+      
+      .card:hover {
+        border-color: rgba(14, 165, 233, 0.3);
+        box-shadow: 0 10px 40px rgba(14, 165, 233, 0.1);
+      }
+      
+      /* Animation Classes */
+      .animate-on-scroll {
+        opacity: 0;
+        transform: translateY(20px);
+        animation: slideUp 0.6s ease-out forwards;
+      }
+      
+      /* Particle Background Effect */
+      .particles {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        overflow: hidden;
+        z-index: 0;
+      }
+      
+      .particle {
+        position: absolute;
+        width: 4px;
+        height: 4px;
+        background: rgba(14, 165, 233, 0.3);
+        border-radius: 50%;
+        animation: float 6s ease-in-out infinite;
+      }
+      
+      /* Number Input Styling */
+      input[type="number"]::-webkit-inner-spin-button,
+      input[type="number"]::-webkit-outer-spin-button {
+        opacity: 1;
+        background: rgba(14, 165, 233, 0.2);
+        border-radius: 4px;
+      }
+
+      /* Pixel Art Styles */
+      .pixel-art {
+        image-rendering: pixelated;
+        image-rendering: -moz-crisp-edges;
+        image-rendering: crisp-edges;
+      }
+
+      .pixel-character {
+        animation: pixelBounce 2s ease-in-out infinite;
+      }
+
+      .pixel-text {
+        font-family: 'VT323', monospace;
+        letter-spacing: 1px;
+      }
+
+      .pixel-badge {
+        animation: pixelPulse 1.5s ease-in-out infinite;
+      }
+
+      /* Pixel Art Animations */
+      @keyframes pixelBounce {
+        0%, 100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-4px);
+        }
+      }
+
+      @keyframes pixelPulse {
+        0%, 100% {
+          transform: scale(1);
+          box-shadow: 0 0 10px rgba(14, 165, 233, 0.3);
+        }
+        50% {
+          transform: scale(1.05);
+          box-shadow: 0 0 20px rgba(14, 165, 233, 0.6);
+        }
+      }
+
+      /* Enhanced Queue Animation */
+      @keyframes queue-walk {
+        0%, 100% {
+          transform: translateX(0) translateY(0);
+        }
+        25% {
+          transform: translateX(-2px) translateY(-2px);
+        }
+        50% {
+          transform: translateX(0) translateY(-4px);
+        }
+        75% {
+          transform: translateX(2px) translateY(-2px);
+        }
+      }
+
+      .animate-queue-walk {
+        animation: queue-walk 1.5s ease-in-out infinite;
+      }
+
+      /* Vending Machine Glow Effect */
+      @keyframes vending-glow {
+        0%, 100% {
+          filter: drop-shadow(0 0 10px rgba(34, 197, 94, 0.3));
+        }
+        50% {
+          filter: drop-shadow(0 0 20px rgba(34, 197, 94, 0.6));
+        }
+      }
+
+      .animate-vending-glow {
+        animation: vending-glow 2s ease-in-out infinite;
+      }
+
+      /* Retro Scanline Effect (Optional) */
+      .scanlines {
+        position: relative;
+      }
+
+      .scanlines::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: repeating-linear-gradient(
+          0deg,
+          rgba(0, 0, 0, 0.1) 0px,
+          rgba(0, 0, 0, 0.1) 1px,
+          transparent 1px,
+          transparent 2px
+        );
+        pointer-events: none;
+        z-index: 1;
+      }
+
+      /* Pixel Border Effect */
+      .pixel-border {
+        border-style: solid;
+        border-width: 4px;
+        border-image: repeating-linear-gradient(
+          45deg,
+          #0ea5e9,
+          #0ea5e9 10px,
+          #e879f9 10px,
+          #e879f9 20px
+        ) 4;
+      }
+
+      /* Slow Pulse Animation */
+      @keyframes pulse-slow {
+        0%, 100% {
+          opacity: 1;
+          transform: scale(1);
+        }
+        50% {
+          opacity: 0.9;
+          transform: scale(1.02);
+        }
+      }
+
+      .animate-pulse-slow {
+        animation: pulse-slow 3s ease-in-out infinite;
+      }
+
+      /* Utility Classes */
+      .hover\:scale-102:hover {
+        transform: scale(1.02);
+      }
+    
+    </style>
+  </head>
+  <body>
+    <!-- Background Particles -->
+    <div class="particles" aria-hidden="true">
+      {Array.from({ length: 20 }).map((_, i) => (
+        <div 
+          class="particle" 
+          style={`left: ${Math.random() * 100}%; top: ${Math.random() * 100}%; animation-delay: ${Math.random() * 5}s; animation-duration: ${4 + Math.random() * 4}s;`}
+        />
+      ))}
+    </div>
+    
+    <!-- Main Content -->
+    <div class="relative z-10">
+      <Navbar client:load />
+      
+      <!-- Page Content -->
+      <main>
+        <slot />
+      </main>
+      
+      <!-- Footer -->
+      <Footer />
+    </div>
+  </body>
+</html>

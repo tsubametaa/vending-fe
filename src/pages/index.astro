@@ -1,0 +1,133 @@
+---
+/**
+ * index.astro - Halaman Utama QueueQuest
+ * ======================================
+ * Game simulasi antrian M/M/1 untuk vending machine
+ */
+
+import Layout from '../layouts/Layout.astro';
+import SimulationForm from '../components/SimulationForm';
+import HeroSection from '../components/HeroSection';
+import QueueAnimation from '../components/QueueAnimation';
+import ResultsSection from '../components/ResultsSection';
+import { 
+  GamepadIcon, 
+  TargetIcon, 
+  ChartIcon, 
+  DiceIcon, 
+  TrophyIcon,
+  BookIcon,
+  LightbulbIcon,
+  SettingsIcon,
+  StepOneIcon,
+  StepTwoIcon,
+  StepThreeIcon,
+  HowToPlayIcon
+} from '../components/Icons';
+---
+
+<Layout title="QueueQuest: The Vending Machine Challenge">
+  <!-- Hero Section -->
+  <!-- Hero Section -->
+  <HeroSection client:load />
+
+  <!-- Theory Section -->
+  <section class="py-8 px-4" id="about">
+    <div class="max-w-4xl mx-auto">
+      <div class="card">
+        <h3 class="font-display text-xl font-bold mb-4 gradient-text flex items-center">
+          <BookIcon client:load />
+          Tentang Teori M/M/1
+        </h3>
+        <div class="grid md:grid-cols-2 gap-6 text-white/70">
+          <div>
+            <h4 class="text-white font-semibold mb-2">Apa itu M/M/1?</h4>
+            <p class="text-sm leading-relaxed">
+              M/M/1 adalah model antrian dengan satu server, di mana kedatangan mengikuti 
+              <strong class="text-primary-300">distribusi Poisson</strong> dan waktu pelayanan 
+              mengikuti <strong class="text-accent-300">distribusi Eksponensial</strong>.
+            </p>
+          </div>
+          <div>
+            <h4 class="text-white font-semibold mb-2">Parameter Kunci</h4>
+            <ul class="text-sm space-y-1">
+              <li><strong class="text-primary-300">λ (Lambda)</strong>: Tingkat kedatangan pelanggan per menit</li>
+              <li><strong class="text-accent-300">μ (Mu)</strong>: Tingkat pelayanan per menit</li>
+              <li><strong class="text-success-300">ρ = λ/μ</strong>: Utilisasi sistem (harus &lt; 1)</li>
+            </ul>
+          </div>
+        </div>
+        <div class="mt-4 p-4 rounded-lg bg-dark-300/50 border border-white/5">
+          <p class="text-sm text-white/60 flex items-start">
+            <span class="mr-2"><LightbulbIcon client:load /></span>
+            <span><strong class="text-warning-400">Tips:</strong> Untuk sistem stabil, pastikan λ &lt; μ. 
+            Semakin kecil rasio ρ, semakin pendek waktu tunggu rata-rata!</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Simulator Section -->
+  <section class="py-8 px-4" id="simulator">
+    <div class="max-w-7xl mx-auto">
+      <h2 class="font-display text-2xl font-bold text-center mb-8 gradient-text flex items-center justify-center">
+        <SettingsIcon client:load />
+        Simulation Control Center
+      </h2>
+      
+      <!-- Main Game Area -->
+      <div class="grid lg:grid-cols-3 gap-6">
+        <!-- Left: Form -->
+        <div class="lg:col-span-1">
+          <SimulationForm client:load />
+        </div>
+        
+        <!-- Right: Animation -->
+        <div class="lg:col-span-2">
+          <QueueAnimation client:load />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Results Section -->
+  <section class="py-8 px-4" id="results">
+    <div class="max-w-7xl mx-auto">
+      <ResultsSection client:load />
+    </div>
+  </section>
+
+  <!-- How to Play -->
+  <section class="py-12 px-4">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="font-display text-2xl font-bold text-center mb-8 gradient-text flex items-center justify-center">
+        <HowToPlayIcon client:load />
+        Cara Bermain
+      </h2>
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="card text-center">
+          <StepOneIcon client:load />
+          <h3 class="font-semibold mb-2">Set Parameter</h3>
+          <p class="text-sm text-white/60">
+            Atur arrival rate (λ), service rate (μ), dan jumlah pelanggan sesuai skenario
+          </p>
+        </div>
+        <div class="card text-center">
+          <StepTwoIcon client:load />
+          <h3 class="font-semibold mb-2">Jalankan Simulasi</h3>
+          <p class="text-sm text-white/60">
+            Klik tombol simulasi dan lihat animasi antrian berjalan secara real-time
+          </p>
+        </div>
+        <div class="card text-center">
+          <StepThreeIcon client:load />
+          <h3 class="font-semibold mb-2">Analisis Hasil</h3>
+          <p class="text-sm text-white/60">
+            Pelajari statistik, grafik, dan raih badge berdasarkan performa Anda!
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
