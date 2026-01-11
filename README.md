@@ -1,10 +1,29 @@
 # 🎮 QueueQuest: The Vending Machine Challenge
 
-![QueueQuest Banner](vending-fe/public/quest.svg)
+<div align="center">
+  <img src="public/quest.svg" alt="QueueQuest Banner" width="100%" />
 
-> **Simulasi Antrian Vending Machine Interaktif dengan Pendekatan M/M/1 System**
+  <br />
+  
+  [![Astro](https://img.shields.io/badge/Astro-5.0-BC52EE?style=for-the-badge&logo=astro&logoColor=white)](https://astro.build/)
+  [![Preact](https://img.shields.io/badge/Preact-10.0-673AB8?style=for-the-badge&logo=preact&logoColor=white)](https://preactjs.com/)
+  [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.4-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
+  [![TypeScript](https://img.shields.io/badge/TypeScript-5.0-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+  
+  <p align="center">
+    <b>Simulasi Antrian Vending Machine Interaktif dengan Pendekatan M/M/1 System</b>
+  </p>
+</div>
 
-QueueQuest adalah aplikasi simulasi web modern yang memvisualisasikan teori antrian (Queueing Theory) menggunakan studi kasus Vending Machine. Proyek ini menggabungkan analisis statistik yang akurat dengan visualisasi **Pixel Art** yang menarik untuk membuat pembelajaran riset operasi menjadi menyenangkan.
+---
+
+## 📖 Tentang Project
+
+**QueueQuest** adalah aplikasi simulasi web modern yang memvisualisasikan **Teori Antrian (Queueing Theory)** menggunakan studi kasus Vending Machine. Proyek ini menggabungkan analisis statistik yang akurat dengan visualisasi **Pixel Art** yang menarik untuk membuat pembelajaran riset operasi menjadi menyenangkan dan interaktif.
+
+Project ini terdiri dari dua bagian utama:
+- **Frontend**: Dibangun dengan Astro & Preact untuk performa tinggi dan animasi halus.
+- **Backend**: Node.js & Express untuk logika simulasi Monte Carlo dan pencatatan data.
 
 ---
 
@@ -13,11 +32,12 @@ QueueQuest adalah aplikasi simulasi web modern yang memvisualisasikan teori antr
 Pilih karakter favorit Anda dan lihat bagaimana mereka berinteraksi dalam simulasi!
 
 <div align="center">
-  <img src="vending-fe/public/assets/hero/hero_1.svg" width="100" alt="Hero 1" />
-  <img src="vending-fe/public/assets/hero/hero_2.svg" width="100" alt="Hero 2" />
-  <img src="vending-fe/public/assets/hero/hero_3.svg" width="100" alt="Hero 3" />
-  <img src="vending-fe/public/assets/hero/hero_4.svg" width="100" alt="Hero 4" />
-  <img src="vending-fe/public/assets/hero/hero_5.svg" width="100" alt="Hero 5" />
+  <img src="public/assets/character/character_1.svg" width="60" alt="Hero 1" style="margin: 0 10px;" />
+  <img src="public/assets/character/character_2.svg" width="60" alt="Hero 2" style="margin: 0 10px;" />
+  <img src="public/assets/character/character_3.svg" width="60" alt="Hero 3" style="margin: 0 10px;" />
+  <img src="public/assets/character/character_4.svg" width="60" alt="Hero 4" style="margin: 0 10px;" />
+  <img src="public/assets/character/character_5.svg" width="60" alt="Hero 5" style="margin: 0 10px;" />
+  <img src="public/assets/character/character_6.svg" width="60" alt="Hero 6" style="margin: 0 10px;" />
 </div>
 
 ---
@@ -28,13 +48,13 @@ Pilih karakter favorit Anda dan lihat bagaimana mereka berinteraksi dalam simula
 Simulasi kedatangan dan pelayanan pelanggan secara real-time berdasarkan distribusi Poisson dan Eksponensial.
 - **Arrival Rate ($\lambda$)**: Laju kedatangan pelanggan.
 - **Service Rate ($\mu$)**: Kecepatan pelayanan mesin.
-- **Visualisasi Dinamis**: Animasi antrian yang menyesuaikan dengan kondisi (Overloaded, Rush Hour, Efficient, Relaxed).
+- **Visualisasi Dinamis**: Animasi antrian yang menyesuaikan dengan kondisi (*Overloaded*, *Rush Hour*, *Efficient*, *Relaxed*).
 
 ### 🎨 2. Visualisasi Pixel Art Retro
 Pengalaman visual yang imersif dengan tema **Game Retro**:
 - **Dynamic Backgrounds**: Latar belakang berubah sesuai kondisi antrian (Taman, Stasiun, Kota Cyber, dll).
 - **Interactive Animations**: Karakter berjalan, mengantri, dan berinteraksi.
-- **Retro UI**: Komponen antarmuka dengan gaya pixel art modern.
+- **Retro UI**: Komponen antarmuka dengan gaya pixel art modern (Scanlines, Pixel Fonts).
 
 ### 📊 3. Analisis & Pelaporan
 - **Real-time Chart**: Grafik garis dinamis memantau panjang antrian VS waktu.
@@ -46,23 +66,27 @@ Pengalaman visual yang imersif dengan tema **Game Retro**:
 
 ## 🛠️ Tech Stack
 
-Project ini dibangun menggunakan teknologi web modern untuk performa tinggi dan developer experience yang baik.
-
 ### Frontend (`vending-fe`)
-- **Framework**: [Astro](https://astro.build/) - Untuk performa statis yang cepat.
-- **UI Library**: [Preact](https://preactjs.com/) - Ringan dan cepat untuk interaktivitas.
-- **Styling**: [Tailwind CSS](https://tailwindcss.com/) - Utility-first CSS framework.
-- **State Management**: [Nano Stores](https://github.com/nanostores/nanostores).
-- **Icons**: Lucide Icons.
+| Teknologi | Kegunaan |
+|-----------|----------|
+| **[Astro](https://astro.build/)** | Framework utama untuk Static Site Generation (SSG). |
+| **[Preact](https://preactjs.com/)** | Library UI ringan (3kb) untuk komponen interaktif. |
+| **[Tailwind CSS](https://tailwindcss.com/)** | Styling cepat dengan utility-first classes. |
+| **[Nano Stores](https://github.com/nanostores/nanostores)** | State management yang ringan dan framework-agnostic. |
+| **Lucide Icons** | Ikon vektor yang bersih dan konsisten. |
 
 ### Backend (`vending-be`)
-- **Runtime**: Node.js.
-- **Framework**: Express.js.
-- **Database/Storage**: Google Sheets API (sebagai database ringan untuk log simulasi).
+| Teknologi | Kegunaan |
+|-----------|----------|
+| **Node.js** | Runtime environment. |
+| **Express.js** | Web framework untuk API. |
+| **Google Sheets API** | Database ringan untuk menyimpan log simulasi. |
 
 ---
 
-## � Arsitektur Sistem
+## 🏗️ Arsitektur Sistem
+
+High-level architecture dari sistem QueueQuest:
 
 ```mermaid
 graph TB
@@ -95,7 +119,8 @@ graph TB
     Sheets -->|"Save Data"| GSheets
 ```
 
-## 🔄 Alur Simulasi
+### 🔄 Alur Simulasi
+Bagaimana data mengalir dari input user hingga hasil ditampilkan:
 
 ```mermaid
 sequenceDiagram
@@ -128,47 +153,15 @@ sequenceDiagram
     F->>U: Tampilkan animasi & hasil
 ```
 
-## 📊 Flowchart Algoritma M/M/1
-
-```mermaid
-flowchart TD
-    A([Start]) --> B[/Input: λ, μ, N/]
-    B --> C{λ < μ?}
-    C -->|No| D[Error: Sistem tidak stabil]
-    C -->|Yes| E[Initialize: i=1, prevArr=0, prevDep=0]
-    
-    E --> F{i <= N?}
-    F -->|No| L[Hitung Statistik Rata-rata]
-    F -->|Yes| G[Generate U1, U2 ~ Uniform 0,1]
-    
-    G --> H["X1 = -ln(U1)/λ (Interarrival)"]
-    H --> I["X2 = -ln(U2)/μ (Service)"]
-    I --> J["Arrival = prevArr + X1
-    Begin = max(Arrival, prevDep)
-    Departure = Begin + X2"]
-    
-    J --> K["Queue Time = Begin - Arrival
-    System Time = Departure - Arrival"]
-    
-    K --> M[Simpan hasil pelanggan i]
-    M --> N[prevArr = Arrival, prevDep = Departure]
-    N --> O[i = i + 1]
-    O --> F
-    
-    L --> P[Bandingkan dengan Nilai Teoritis]
-    P --> Q[Hitung Skor & Badge]
-    Q --> R([End])
-```
-
 ---
 
-## �🚀 Cara Menjalankan
+## 🚀 Cara Menjalankan
 
 Ikuti langkah-langkah berikut untuk menjalankan proyek di lokal komputer Anda.
 
 ### Prasyarat
-- Node.js (v18+)
-- NPM atau PNPM
+- **Node.js** (v18+)
+- **NPM** atau **PNPM**
 
 ### 1. Clone Repository
 ```bash
@@ -176,38 +169,38 @@ git clone https://github.com/username/queue-quest.git
 cd queue-quest
 ```
 
-### 2. Setup Backend
+### 2. Setup Backend & Frontend
+Kami menyarankan menjalankan frontend dan backend secara bersamaan di terminal yang berbeda.
+
+**Terminal 1: Backend**
 ```bash
 cd vending-be
 npm install
-# Setup env jika diperlukan
+# Setup env jika diperlukan (lihat .env.example)
 npm run dev
+# Server berjalan di http://localhost:3001
 ```
-Backend akan berjalan di `http://localhost:3001`
 
-### 3. Setup Frontend
-Buka terminal baru:
+**Terminal 2: Frontend**
 ```bash
 cd vending-fe
 npm install
 npm run dev
+# Frontend berjalan di http://localhost:4321
 ```
-Frontend akan berjalan di `http://localhost:4321`
-
----
-
-## 📸 Screenshots
-
-| Dashboard Simulasi | Animasi Antrian |
-|:---:|:---:|
-| Visualisasi parameter dan kontrol simulasi yang intuitif. | Tampilan Pixel Art yang berubah dinamis sesuai kepadatan antrian. |
 
 ---
 
 ## 👨‍💻 Tim Pengembang
 
-Alvin, Ilham, Farhans
+| Nama | Role |
+|------|------|
+| **Alvin** | Fullstack Developer |
+| **Ilham** | Frontend Engineer |
+| **Farhan** | Simulation & Logic Specialist |
 
 ---
 
-© 2026 QueueQuest. All rights reserved.
+<p align="center">
+  © 2026 QueueQuest. Built with ❤️ and lots of coffee.
+</p>

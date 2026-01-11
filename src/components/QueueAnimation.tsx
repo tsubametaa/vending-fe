@@ -11,6 +11,7 @@ import {
   Clock,
   Users
 } from 'lucide-preact';
+import { div } from 'framer-motion/client';
 
 const CHARACTERS = [
   '/assets/character/character_1.svg',
@@ -316,7 +317,7 @@ export default function QueueAnimation() {
         ) : (
           <div class="absolute inset-0 flex items-end pb-4">
             {servingPerson && (
-              <div class="absolute right-[15%] md:right-[18%] bottom-[15%] z-20">
+              <div class="absolute left-[15%] md:left-[18%] bottom-[15%] z-20">
                 <div class="relative pixel-character">
                   <img 
                     src={servingPerson.character} 
@@ -334,7 +335,7 @@ export default function QueueAnimation() {
               </div>
             )}
 
-            <div class="absolute left-4 right-[35%] md:right-[40%] bottom-[12%] flex items-end justify-start gap-1 md:gap-2 flex-row-reverse z-10">
+            <div class="absolute right-4 left-[35%] md:left-[40%] bottom-[12%] flex items-end justify-start gap-1 md:gap-2 z-10 overflow-hidden">
               {waitingPeople.slice(0, 6).map((person, index) => (
                 <div 
                   key={person.id}
