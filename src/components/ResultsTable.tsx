@@ -69,7 +69,7 @@ function ExportModal({ isOpen, onClose, data, statistics }: ExportModalProps) {
 
     try {
       const response = await fetch(
-        "http://localhost:3001/api/export-to-sheets",
+        "https://vending-be.vercel.app/api/export-to-sheets",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },

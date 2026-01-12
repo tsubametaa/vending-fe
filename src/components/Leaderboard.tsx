@@ -39,7 +39,7 @@ export default function Leaderboard() {
     setError(null);
     try {
       const response = await fetch(
-        "http://localhost:3001/api/leaderboard?limit=3"
+        "https://vending-be.vercel.app/api/leaderboard?limit=3"
       );
       const data = await response.json();
 
