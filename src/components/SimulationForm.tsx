@@ -27,6 +27,7 @@ interface ValidationErrors {
   lambda?: string;
   mu?: string;
   numCustomers?: string;
+  playerName?: string;
   general?: string;
 }
 
@@ -71,6 +72,10 @@ export default function SimulationForm() {
 
   const validateForm = (): boolean => {
     const newErrors: ValidationErrors = {};
+
+    if (!formData.playerName) {
+      newErrors.playerName = "Pilih karakter terlebih dahulu";
+    }
 
     if (formData.lambda <= 0) {
       newErrors.lambda = "Lambda harus lebih besar dari 0";
@@ -291,9 +296,16 @@ export default function SimulationForm() {
             Nama Pemain
           </label>
           <ChooseChar />
-          <p class="text-xs text-white/40 mt-2">
-            Klik karakter di Hero Section untuk memilih pemain
-          </p>
+          {errors.playerName ? (
+            <p class="text-danger-400 text-xs mt-2 flex items-center gap-1">
+              <AlertTriangle class="w-3 h-3" />
+              {errors.playerName}
+            </p>
+          ) : (
+            <p class="text-xs text-white/40 mt-2">
+              Klik karakter di Hero Section untuk memilih pemain
+            </p>
+          )}
         </motion.div>
 
         <motion.div
@@ -420,7 +432,7 @@ export default function SimulationForm() {
 
         <motion.button
           type="submit"
-          disabled={isLoading || utilization >= 1}
+          disabled={isLoading || utilization >= 1 || !formData.playerName}
           class="btn-primary w-full flex items-center justify-center gap-3 text-lg py-4"
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
