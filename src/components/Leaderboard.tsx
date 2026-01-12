@@ -46,16 +46,16 @@ export default function Leaderboard() {
       if (data.success && data.leaderboard) {
         setLeaderboard(data.leaderboard);
         if (data.source === "mongodb") {
-          console.log("📊 Leaderboard loaded from MongoDB");
+          console.log("Leaderboard loaded from MongoDB");
         }
       } else {
         setLeaderboard([]);
-        setError("Belum ada data di leaderboard.");
+        setError(data.message || "Belum ada data di leaderboard.");
       }
     } catch (err) {
       console.error("Error fetching leaderboard:", err);
       setLeaderboard([]);
-      setError("Tidak dapat terhubung ke server.");
+      setError("Tidak dapat terhubung ke server. Cek koneksi internet.");
     } finally {
       setIsLoading(false);
     }
