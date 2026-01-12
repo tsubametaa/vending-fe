@@ -232,7 +232,6 @@ function WaitTimeDistribution({ data }: { data: SimulationData[] }) {
               </span>
             </div>
             <div className="h-4 bg-dark-400/50 rounded-full overflow-hidden border border-white/5 relative">
-              {/* Pattern overlay for empty space/texture if needed, kept simple for now */}
               <motion.div
                 initial={{ width: 0 }}
                 animate={{ width: `${item.percent}%` }}
