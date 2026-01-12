@@ -12,6 +12,7 @@ import {
   Users
 } from 'lucide-preact';
 import { div } from 'framer-motion/client';
+import { PixelDropdown } from './ui/dropdown';
 
 const CHARACTERS = [
   '/assets/character/character_1.svg',
@@ -249,16 +250,16 @@ export default function QueueAnimation() {
             >
               <RotateCcw class="w-5 h-5" />
             </button>
-            <select
+            <PixelDropdown
               value={animationSpeed}
-              onChange={(e) => setAnimationSpeed(parseFloat((e.target as HTMLSelectElement).value))}
-              class="px-4 py-2.5 rounded-lg bg-gradient-to-br from-dark-300/70 to-dark-300/50 text-sm font-bold text-white border-2 border-white/20 pixel-text hover:border-primary-500/40 transition-all cursor-pointer"
-            >
-              <option value="0.5">0.5x</option>
-              <option value="1">1x</option>
-              <option value="2">2x</option>
-              <option value="5">5x</option>
-            </select>
+              onChange={setAnimationSpeed}
+              options={[
+                { label: '0.5x', value: 0.5 },
+                { label: '1x', value: 1 },
+                { label: '2x', value: 2 },
+                { label: '5x', value: 5 },
+              ]}
+            />
           </div>
         )}
       </div>
