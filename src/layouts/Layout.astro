@@ -1,10 +1,4 @@
 ---
-/**
- * Layout.astro - Layout Utama untuk QueueQuest
- * =============================================
- * Layout dengan header, footer, dan styling global
- */
-
 interface Props {
   title: string;
   description?: string;
@@ -17,6 +11,7 @@ const {
 
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import BackgroundMusic from '../components/BackgroundMusic';
 ---
 
 <!doctype html>
@@ -363,6 +358,9 @@ import Footer from '../components/Footer';
       
       <!-- Footer -->
       <Footer client:visible />
+      
+      <!-- Background Music -->
+      <BackgroundMusic client:load />
     </div>
   </body>
 </html>
