@@ -353,16 +353,16 @@ import Footer from '../components/Footer';
     </div>
     
     <!-- Main Content -->
-    <div class="relative z-10">
+    <div class="relative z-10 min-h-screen flex flex-col">
       <Navbar client:load />
       
       <!-- Page Content -->
-      <main>
+      <main class="flex-grow">
         <slot />
       </main>
       
       <!-- Footer -->
-      <Footer />
+      <Footer client:visible />
     </div>
   </body>
 </html>

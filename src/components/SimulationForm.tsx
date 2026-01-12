@@ -129,7 +129,7 @@ export default function SimulationForm() {
 
     try {
       const response = await fetch(
-        "https://vending-be.vercel.app/api/simulate",
+        "http://localhost:3001/api/simulate",
         {
           method: "POST",
           headers: {
