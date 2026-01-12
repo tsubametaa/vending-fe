@@ -30,6 +30,7 @@ import {
   RefreshCw,
   Copy,
   Check,
+  Square,
 } from "lucide-preact";
 
 function getBadgeIcon(badgeName: string, size: string = "w-12 h-12") {
@@ -526,8 +527,14 @@ export default function Conclusion() {
         </div>
 
         <div class="flex items-center gap-2 mt-3 text-xs text-white/50">
-          <span class="text-primary-300">■</span> Simulasi Monte Carlo
-          <span class="text-accent-300 ml-2">■</span> Nilai Teoritis M/M/1
+          <div class="flex items-center gap-1">
+            <Square class="w-3 h-3 text-primary-300 fill-current" />{" "}
+            <span>Simulasi Monte Carlo</span>
+          </div>
+          <div class="flex items-center gap-1 ml-3">
+            <Square class="w-3 h-3 text-accent-300 fill-current" />{" "}
+            <span>Nilai Teoritis M/M/1</span>
+          </div>
         </div>
       </ConclusionCard>
 

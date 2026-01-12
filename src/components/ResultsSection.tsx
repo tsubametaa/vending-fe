@@ -9,6 +9,7 @@ import QueueChart from "./QueueChart";
 import Badge from "./Badge";
 import Leaderboard from "./Leaderboard";
 import Conclusion from "./Conclusion";
+import Summary from "./logic/Summary";
 import {
   PartyPopper,
   Timer,
@@ -25,6 +26,7 @@ import {
   AlertTriangle,
   Calculator,
   FileText,
+  Users,
 } from "lucide-preact";
 
 export default function ResultsSection() {
@@ -32,7 +34,7 @@ export default function ResultsSection() {
     simulationStore.getState()
   );
   const [activeTab, setActiveTab] = useState<
-    "stats" | "table" | "chart" | "leaderboard" | "conclusion"
+    "stats" | "table" | "chart" | "summary" | "leaderboard" | "conclusion"
   >("stats");
 
   useEffect(() => {
@@ -148,6 +150,7 @@ export default function ResultsSection() {
           { id: "stats", label: "Statistik", Icon: BarChart3 },
           { id: "table", label: "Tabel Data", Icon: Table },
           { id: "chart", label: "Grafik", Icon: LineChart },
+          { id: "summary", label: "Ringkasan Detail", Icon: Users },
           { id: "conclusion", label: "Kesimpulan", Icon: FileText },
           { id: "leaderboard", label: "Leaderboard", Icon: Crown },
         ].map((tab) => (
@@ -363,6 +366,8 @@ export default function ResultsSection() {
             )}
 
             {activeTab === "leaderboard" && <Leaderboard />}
+
+            {activeTab === "summary" && <Summary />}
 
             {activeTab === "conclusion" && <Conclusion />}
           </motion.div>
