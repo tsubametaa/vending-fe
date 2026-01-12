@@ -2,6 +2,7 @@ import { useState, useEffect } from "preact/hooks";
 import { motion, AnimatePresence } from "framer-motion";
 import { simulationStore } from "./stores/simulationStore";
 import { characterStore } from "./logic/CharacterClick";
+import ChooseChar from "./logic/ChooseChar";
 import {
   Settings,
   User,
@@ -289,14 +290,10 @@ export default function SimulationForm() {
             <User class="w-4 h-4" />
             Nama Pemain
           </label>
-          <input
-            type="text"
-            value={formData.playerName}
-            onInput={handleChange("playerName")}
-            placeholder="Masukkan nama Anda..."
-            class="input-field"
-            maxLength={50}
-          />
+          <ChooseChar />
+          <p class="text-xs text-white/40 mt-2">
+            Klik karakter di Hero Section untuk memilih pemain
+          </p>
         </motion.div>
 
         <motion.div
